@@ -1,2 +1,2 @@
 worker: python3 kkbot.py
-web: gunicorn app/app:APP
+web: gunicorn app:APP --chdir ./app/

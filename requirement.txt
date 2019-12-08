@@ -1,0 +1,4 @@
+discord-config
+discord.py
+flask
+discord

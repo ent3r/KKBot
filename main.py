@@ -212,6 +212,6 @@ def index():
 Thread(target=APP.run, args=("0.0.0.0", 8080)).start()
 
 try:
-    BOT.run(os.getenv("TOKEN"))
+    BOT.run(os.environ.get("TOKEN"))
 except KeyboardInterrupt:
     BOT.close()

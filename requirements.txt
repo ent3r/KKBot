@@ -1,6 +1,0 @@
-discord-config
-discord.py
-flask
-discord
-requests
-gunicorn

@@ -1,6 +1,5 @@
 """Koden til boten i KodeKafe discord serveren"""
 
-from threading import Thread
 import os
 import random
 import time
@@ -9,7 +8,6 @@ import datetime
 import requests
 import discord
 from discord.ext import commands
-from flask import Flask
 
 
 API_URL = "https://api.uptimerobot.com/v2/getMonitors"
@@ -72,18 +70,18 @@ async def status(ctx):
         colour=discord.Color.red()
     )
 
-
     content.add_field(name="Uptime", value=(
         (int(time.time()) - data["datetime"])/60)/60, inline=True)
 
-
     content.add_field(name="Last downtime", value=datetime.datetime.fromtimestamp(
         data["datetime"]), inline=True)
-    content.add_field(name="Last Command", value=LAST_COMMAND["command"], inline=False)
-    content.add_field(name="Exit code", value=str(LAST_COMMAND["exit code"]), inline=True)
-    content.add_field(name="Parameters", value=LAST_COMMAND["params"], inline=True)
+    content.add_field(name="Last Command",
+                      value=LAST_COMMAND["command"], inline=False)
+    content.add_field(name="Exit code", value=str(
+        LAST_COMMAND["exit code"]), inline=True)
+    content.add_field(name="Parameters",
+                      value=LAST_COMMAND["params"], inline=True)
     await ctx.send(embed=content)
-
 
 
 @BOT.command()
@@ -199,17 +197,6 @@ async def _bot(ctx):
     LAST_COMMAND["exit code"] = 0
     await ctx.send('Yes, the bot is cool.')
     LAST_COMMAND["exit code"] = 1
-
-APP = Flask("Server settings")
-
-
-@APP.route("/")
-def index():
-    """Function for the index page of the site"""
-    return "<h1>Bot is running</h1>"
-
-
-Thread(target=APP.run, args=("0.0.0.0", 8080)).start()
 
 try:
     BOT.run(os.environ.get("TOKEN"))

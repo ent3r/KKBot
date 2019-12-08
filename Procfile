@@ -1,2 +1,2 @@
-worker: python3 main.py
-web: gunicorn main:APP
+worker: python3 kkbot.py
+web: gunicorn app/app:APP

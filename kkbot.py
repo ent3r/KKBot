@@ -85,6 +85,10 @@ async def status(ctx):
 
 
 @BOT.command()
+async def ping(ctx):
+    await ctx.send(f'Response time: {round(client.latency * 1000)}ms')
+
+@BOT.command()
 async def randomcommand(ctx):
     """Just try it."""
     LAST_COMMAND["command"] = randomcommand
@@ -199,6 +203,6 @@ async def _bot(ctx):
     LAST_COMMAND["exit code"] = 1
 
 try:
-    BOT.run(os.environ.get("TOKEN"))
+    BOT.run(os.environ.get("KKBOTTOKEN"))
 except KeyboardInterrupt:
     BOT.close()

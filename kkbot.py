@@ -86,7 +86,8 @@ async def status(ctx):
 
 @BOT.command()
 async def ping(ctx):
-    await ctx.send(f'Response time: {round(client.latency * 1000)}ms')
+    """Command for checking the bot's response time"""
+    await ctx.send(f'Response time: {round(BOT.latency * 1000)}ms')
 
 @BOT.command()
 async def randomcommand(ctx):

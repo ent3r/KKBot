@@ -1,14 +1,10 @@
 """The webapp for the KKBot"""
 
-from flask import Flask, render_template
+from flask import render_template
+from app import KKWEBAPP
 
-APP = Flask(__name__)
 
-
-@APP.route("/")
+@KKWEBAPP.route("/")
 def index():
     """Function for the index page of the site"""
     return render_template("site.html")
-
-
-APP.run("0.0.0.0", 8080)

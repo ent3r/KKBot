@@ -60,7 +60,7 @@ async def status(ctx):
     """Checks BOT status, including uptime"""
 
     for item in RESPONSE:
-        if item["type"] == 1:
+        if item["type"] == 2:
             data = item
             break
 

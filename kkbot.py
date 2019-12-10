@@ -71,7 +71,7 @@ async def status(ctx):
     )
 
     content.add_field(name="Uptime", value=(
-        (int(time.time()) - data["datetime"])/60)/60, inline=True)
+        datetime.timedelta(seconds=str((int(time.time()) - data["datetime"])) + "h")), inline=True)
 
     content.add_field(name="Last downtime", value=datetime.datetime.fromtimestamp(
         data["datetime"]), inline=True)

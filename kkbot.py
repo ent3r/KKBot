@@ -5,6 +5,7 @@ import json
 import os
 import random
 import time
+import math
 
 import discord
 import requests
@@ -109,13 +110,21 @@ async def groot(ctx):
 
 
 @BOT.command()
-async def square(ctx):
-    """Draws an (inperfect) square."""
+async def square(ctx, number):
+    """Finds the square of any number"""
     LAST_COMMAND["command"] = "square"
     LAST_COMMAND["params"] = None
-    LAST_COMMAND["exit code"] = 0
-    await ctx.send("____")
+    try: 
+        number = int(number)
+    except ValueError:
+        await ctx.send("Error: Cannot convert letter to int")
+        LAST_COMMAND["exit code"] = 1
+        break
+    square = math.sqrt(number)
+    await ctx.send(f"The square of {number} is {square}")
+    await ctx.send("_____")
     await ctx.send("|_|")
+    LAST_COMMAND["exit code"] = 0
 
 
 @BOT.command()

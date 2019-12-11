@@ -214,6 +214,12 @@ async def cool(ctx):
 
 
 try:
+    print("Starting bot")
     BOT.run(os.environ.get("KKBOTTOKEN"))
+    print("Closing connection...", end="")
+    time.sleep(0.2)
+    print("Closed")
 except KeyboardInterrupt:
+    print("Forceibly closing connection...", end="")
     BOT.close()
+    print("Connection closed")

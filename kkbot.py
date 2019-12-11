@@ -122,8 +122,8 @@ async def square(ctx, number):
         return
     square = math.sqrt(number)
     await ctx.send(f"The square of {number} is {square}")
-    await ctx.send("_____")
-    await ctx.send("|_|")
+    await ctx.send("""┏┓\n┗┛""")
+    await ctx.send("")
     LAST_COMMAND["exit code"] = 0
 
 

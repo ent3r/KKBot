@@ -119,7 +119,7 @@ async def square(ctx, number):
     except ValueError:
         await ctx.send("Error: Cannot convert letter to int")
         LAST_COMMAND["exit code"] = 1
-        break
+        return
     square = math.sqrt(number)
     await ctx.send(f"The square of {number} is {square}")
     await ctx.send("_____")

@@ -2,10 +2,10 @@
 
 import datetime
 import json
+import math as mathfunc
 import os
 import random
 import time
-import math
 
 import discord
 import requests
@@ -39,21 +39,47 @@ async def on_ready():
     print('------')
 
 
-@BOT.command()
-async def add(ctx, left, right):
+@BOT.group()
+async def math(ctx):
+    """Wrapper for math functions"""
+    if ctx.invoked_subcommand is None:
+        await ctx.send("Error: No subcommand passed")
+
+
+@math.command()
+async def add(ctx, *numbers):
     """Adds two numbers together."""
     LAST_COMMAND["command"] = "add"
-    LAST_COMMAND["params"] = {"left": left, "right": right}
+    LAST_COMMAND["args"] = numbers
+    numbers_int = []
     try:
-        left = int(left)
-        right = int(right)
+        for number in numbers:
+            numbers_int.append(int(number))
     except ValueError:
-        await ctx.send("Cannot convert letters to int")
+        await ctx.send("Error: Cannot convert letters to int")
         print("Add command failed")
         LAST_COMMAND["exit code"] = 1
         return
-    await ctx.send(left + right)
-    print("Add command sucseeded")
+    await ctx.send(sum(numbers_int))
+    print("Add command succeed")
+
+
+@math.command()
+async def sqrt(ctx, number):
+    """Finds the square root of any number"""
+    LAST_COMMAND["command"] = "square"
+    LAST_COMMAND["params"] = None
+    try:
+        number = int(number)
+    except ValueError:
+        await ctx.send("Error: Cannot convert letter to int")
+        LAST_COMMAND["exit code"] = 1
+        return
+    square = mathfunc.sqrt(number)
+    await ctx.send(f"The square root of {number} is {square}")
+    await ctx.send("""┏┓\n┗┛""")
+    await ctx.send("")
+    LAST_COMMAND["exit code"] = 0
 
 
 @BOT.command()
@@ -68,7 +94,8 @@ async def status(ctx):
     content = discord.Embed(
         title="KKBot status",
         description="Status on the bot, incuding uptime, last downtime, and last command status",
-        colour=discord.Color.red()
+        colour=discord.Color.red(),
+        author="KKBot",
     )
 
     content.add_field(name="Uptime", value=(
@@ -107,24 +134,6 @@ async def groot(ctx):
     LAST_COMMAND["params"] = None
     LAST_COMMAND["exit code"] = 0
     await ctx.send("I am Groot")
-
-
-@BOT.command()
-async def square(ctx, number):
-    """Finds the square of any number"""
-    LAST_COMMAND["command"] = "square"
-    LAST_COMMAND["params"] = None
-    try: 
-        number = int(number)
-    except ValueError:
-        await ctx.send("Error: Cannot convert letter to int")
-        LAST_COMMAND["exit code"] = 1
-        return
-    square = math.sqrt(number)
-    await ctx.send(f"The square of {number} is {square}")
-    await ctx.send("""┏┓\n┗┛""")
-    await ctx.send("")
-    LAST_COMMAND["exit code"] = 0
 
 
 @BOT.command()
@@ -200,8 +209,8 @@ async def cool(ctx):
             await ctx.send('Yes, {0.subcommand_passed} is cool :)'.format(ctx))
             LAST_COMMAND["exit code"] = 0
             return
-        LAST_COMMAND["exit code"] = 2
-    LAST_COMMAND["exit code"] = 3
+        LAST_COMMAND["exit code"] = 3
+    LAST_COMMAND["exit code"] = 4
 
 
 try:

@@ -22,7 +22,7 @@ If you would like to make or suggest a new feature, these are the steps to follo
 
 1. Make a descriptively named issue in the format of `[FEATURE] name of feature`, and someone will help you out
 
-   For example, if i wanted to add a divide command, this is what my title would be: `[FEATURE] Divide command`
+    For example, if i wanted to add a divide command, this is what my title would be: `[FEATURE] Divide command`
 
 2. (_Optional_) If you know how to add the feature, make a new branch with the format `feature-name-of-feature`. _Please dont use spaces in the branch name :)_
 

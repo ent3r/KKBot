@@ -1,10 +1,7 @@
 ---
 name: Other request
 about: Describe this issue template's purpose here.
-title: ''
+title: ""
 labels: other
-assignees: ''
-
+assignees: ""
 ---
-
-

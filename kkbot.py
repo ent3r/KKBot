@@ -7,8 +7,9 @@ import os
 import random
 import time
 
-import discord
 import requests
+
+import discord
 from discord.ext import commands
 
 API_URL = "https://api.uptimerobot.com/v2/getMonitors"
@@ -22,9 +23,7 @@ RESPONSE = json.loads(requests.request(
     "POST", API_URL, data=PAYLOAD, headers=HEADERS).text)["monitors"][0]["logs"]
 
 
-DESCRIPTION = '''An example bot to showcase the discord.ext.commands extension
-module.
-There are a number of utility commands being showcased here.'''
+DESCRIPTION = '''A general bot with general commands'''
 BOT = commands.Bot(command_prefix='?', description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
@@ -37,6 +36,9 @@ async def on_ready():
     print(BOT.user.name)
     print(BOT.user.id)
     print('------')
+
+# @BOT.category()
+# class math()*
 
 
 @BOT.group()
@@ -76,9 +78,7 @@ async def sqrt(ctx, number):
         LAST_COMMAND["exit code"] = 1
         return
     square = mathfunc.sqrt(number)
-    await ctx.send(f"The square root of {number} is {square}")
-    await ctx.send("""┏┓\n┗┛""")
-    await ctx.send("")
+    await ctx.send(f"The square root of {number} is {square}\n┏┓\n┗┛")
     LAST_COMMAND["exit code"] = 0
 
 

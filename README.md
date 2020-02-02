@@ -10,11 +10,7 @@ This bot was made by using the [`discord`](https://pypi.org/project/discord/) py
 
 ## Requirements
 
-There are two ways to install the needed requirements for this project. The reccomended way is to use `pipenv`, as `pip` is going to go away, but both are supported.
-
-### Using `pip`
-
-To use this method you need to make sure you have `pip` installed. To install `pip` you can follow [this](https://pip.pypa.io/en/stable/installing/) tutorial.
+Make sure you have `pip` installed. To install `pip` you can follow [this](https://pip.pypa.io/en/stable/installing/) tutorial.
 
 This command will install all requirements listed in `requirements.txt`
 
@@ -22,15 +18,6 @@ This command will install all requirements listed in `requirements.txt`
 pip install -r requirements.txt
 ```
 
-### Using `pipenv`
-
-[`Pipenv`](https://github.com/pypa/pipenv) is the new package manager made py pypa, the same people that made `pip`
-
-This command will make sure the packages listed in `pipfile.lock` are installed.
-
-```bash
-pipenv sync
-```
 
 ## Contributing
 

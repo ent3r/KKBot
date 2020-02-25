@@ -36,6 +36,9 @@ async def on_ready():
     print(BOT.user.name)
     print(BOT.user.id)
     print('------')
+    activity = discord.activity.Activity(
+        name="for commands", type=discord.ActivityType.watching)
+    await BOT.change_presence(activity=activity)
 
 # @BOT.category()
 # class math()*

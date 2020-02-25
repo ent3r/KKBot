@@ -22,9 +22,10 @@ HEADERS = {
 RESPONSE = json.loads(requests.request(
     "POST", API_URL, data=PAYLOAD, headers=HEADERS).text)["monitors"][0]["logs"]
 
+DESCRIPTION = "The bot in use in the KodeKafe discord server"
+PREFIX = "sudo "
 
-DESCRIPTION = '''A general bot with general commands'''
-BOT = commands.Bot(command_prefix='?', description=DESCRIPTION)
+BOT = commands.Bot(command_prefix='sudo ', description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
 

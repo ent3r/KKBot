@@ -18,7 +18,6 @@ HEADERS = {
     'content-type': "application/x-www-form-urlencoded",
     'cache-control': "no-cache"
 }
-
 RESPONSE = json.loads(requests.request(
     "POST", API_URL, data=PAYLOAD, headers=HEADERS).text)["monitors"][0]["logs"]
 

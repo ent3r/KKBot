@@ -28,6 +28,22 @@ BOT = commands.Bot(command_prefix='sudo ', description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
 
+async def handle_error(ctx, error, readable_error=None):
+    embed = discord.Embed(
+        title="Error",
+        description="An error occured",
+        colour=discord.Color.red(),
+        author="KKBot",
+    )
+    if readable_error is not None:
+        embed.add_field(name="Error message",
+                        value=readable_error, inline=True)
+    else:
+        embed.add_field(name="Error message", value=error, inline=True)
+    await ctx.send(embed=embed)
+    raise error
+
+
 @BOT.event
 async def on_ready():
     """Ready function"""

@@ -127,7 +127,7 @@ async def randomcommand(ctx):
     LAST_COMMAND["command"] = "randomcommand"
     LAST_COMMAND["params"] = None
     LAST_COMMAND["exit code"] = 0
-    await ctx.send("Why're you typing bullshit?")
+    await ctx.send("Why are you typing bullshit?")
 
 
 @BOT.command()

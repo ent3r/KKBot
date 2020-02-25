@@ -12,6 +12,9 @@ import requests
 import discord
 from discord.ext import commands
 
+
+# region api stuff
+
 API_URL = "https://api.uptimerobot.com/v2/getMonitors"
 PAYLOAD = "api_key=m783949605-da40969d1f5b232744446ac8&format=json&logs=1"
 HEADERS = {
@@ -21,8 +24,11 @@ HEADERS = {
 RESPONSE = json.loads(requests.request(
     "POST", API_URL, data=PAYLOAD, headers=HEADERS).text)["monitors"][0]["logs"]
 
+# endregion
+# region bot info
 DESCRIPTION = "The bot in use in the KodeKafe discord server"
 PREFIX = "sudo "
+# endregion
 
 BOT = commands.Bot(command_prefix='sudo ', description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
@@ -56,6 +62,7 @@ async def on_ready():
         name="for commands", type=discord.ActivityType.watching)
     await BOT.change_presence(activity=activity)
 
+# region math commands
 
 @BOT.group()
 async def math(ctx):
@@ -97,6 +104,7 @@ async def sqrt(ctx, number):
     await ctx.send(f"The square root of {number} is {square}\n┏┓\n┗┛")
     LAST_COMMAND["exit code"] = 0
 
+# endregion
 
 @BOT.command()
 async def status(ctx):

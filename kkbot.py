@@ -33,6 +33,13 @@ PREFIX = "sudo "
 BOT = commands.Bot(command_prefix='sudo ', description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
+async def handle_error(ctx, error):
+    """Handles errors by sending a message and logging to heroku"""
+    await ctx.send(f"An error occurred. Please see the following info to debug:\n{error}")
+    raise error
+
+
+
 
 async def handle_error(ctx, error, readable_error=None):
     embed = discord.Embed(

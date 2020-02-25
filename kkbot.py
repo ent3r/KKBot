@@ -215,12 +215,13 @@ async def cool(ctx):
         LAST_COMMAND["exit code"] = 3
     LAST_COMMAND["exit code"] = 4
 
+token = os.getenv("KKBOTTOKEN")
+if token == None:
+    raise EnvironmentError("Missing discord token")
 
 try:
-    print("Starting bot")
-    BOT.run(os.environ.get("KKBOTTOKEN"))
-    print("Closing connection...", end="")
-    time.sleep(0.2)
+    print("Starting bot...")
+    BOT.run(token)
     print("Closed")
 except KeyboardInterrupt:
     print("Forceibly closing connection...", end="")

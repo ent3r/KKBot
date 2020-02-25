@@ -40,9 +40,6 @@ async def on_ready():
         name="for commands", type=discord.ActivityType.watching)
     await BOT.change_presence(activity=activity)
 
-# @BOT.category()
-# class math()*
-
 
 @BOT.group()
 async def math(ctx):

@@ -33,6 +33,7 @@ LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
 
 async def handle_error(ctx, error, readable_error=None):
+    """Handles errors in commands"""
     embed = discord.Embed(
         title="Error",
         description="An error occured",
@@ -61,6 +62,13 @@ async def on_ready():
     await BOT.change_presence(activity=activity)
 
 
+@BOT.event
+async def on_command_error(ctx, error):
+    """Handles errors by sending a message in the channel"""
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Error: Command not found")
+        raise error
+    raise error
 
 
 # region math commands

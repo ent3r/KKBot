@@ -25,10 +25,10 @@ RESPONSE = json.loads(requests.request(
 # endregion
 # region bot info
 DESCRIPTION = "The bot in use in the KodeKafe discord server"
-PREFIX = "sudo "
+PREFIX = "!"
 # endregion
 
-BOT = commands.Bot(command_prefix='sudo ', description=DESCRIPTION)
+BOT = commands.Bot(command_prefix=PREFIX, description=DESCRIPTION)
 LAST_COMMAND = {"exit code": None, "command": None, "params": None}
 
 async def handle_error(ctx, error):

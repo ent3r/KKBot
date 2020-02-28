@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest a new command for the bot
 title: "[FEATURE]"
 labels: feature
 assignees: ""

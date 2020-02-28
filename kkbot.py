@@ -14,7 +14,6 @@ from discord.ext import commands
 
 
 # region api stuff
-
 API_URL = "https://api.uptimerobot.com/v2/getMonitors"
 PAYLOAD = "api_key=m783949605-da40969d1f5b232744446ac8&format=json&logs=1"
 HEADERS = {
@@ -23,7 +22,6 @@ HEADERS = {
 }
 RESPONSE = json.loads(requests.request(
     "POST", API_URL, data=PAYLOAD, headers=HEADERS).text)["monitors"][0]["logs"]
-
 # endregion
 # region bot info
 DESCRIPTION = "The bot in use in the KodeKafe discord server"
@@ -37,9 +35,6 @@ async def handle_error(ctx, error):
     """Handles errors by sending a message and logging to heroku"""
     await ctx.send(f"An error occurred. Please see the following info to debug:\n{error}")
     raise error
-
-
-
 
 async def handle_error(ctx, error, readable_error=None):
     embed = discord.Embed(
@@ -68,6 +63,9 @@ async def on_ready():
     activity = discord.activity.Activity(
         name="for commands", type=discord.ActivityType.watching)
     await BOT.change_presence(activity=activity)
+
+
+
 
 # region math commands
 
@@ -112,6 +110,7 @@ async def sqrt(ctx, number):
     LAST_COMMAND["exit code"] = 0
 
 # endregion
+
 
 @BOT.command()
 async def status(ctx):
@@ -240,7 +239,7 @@ async def cool(ctx):
             await ctx.send('Yes, {0.subcommand_passed} is cool :)'.format(ctx))
             LAST_COMMAND["exit code"] = 0
             return
-        LAST_COMMAND["exit code"] = 3
+
     LAST_COMMAND["exit code"] = 4
 
 token = os.getenv("KKBOTTOKEN")

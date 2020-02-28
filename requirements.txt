@@ -2,5 +2,5 @@ discord
 requests
 discord-config
 gunicorn
-"discord.py"
+discord.py
 Flask

@@ -152,6 +152,22 @@ class Math(commands.Cog):
         square = mathfunc.sqrt(number)
         await ctx.send(f"The square root of {number} is {square}\n┏┓\n┗┛")
 
+    @commands.command()
+    async def sub(self, ctx, *numbers):
+        """Subtracts things from things"""
+        numbers_int = []
+        try:
+            for number in numbers:
+                numbers_int.append(int(number))
+        except Exception as err:
+            handle_error(ctx, err, "Cannot convert char to int")
+            return
+        base = numbers_int[0]
+        numbers_int.pop(0)
+        for number in numbers_int:
+            base -= number
+        await ctx.send(f"{base}")
+
 
 class Fun(commands.Cog):
     """Cog for fun and game commands"""

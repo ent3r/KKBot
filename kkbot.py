@@ -37,7 +37,7 @@ async def handle_error(ctx, error, readable_error=None):
         colour=discord.Color.red(),
         author="KKBot",
     )
-    if readable_error is not None:
+    if readable_error:
         embed.add_field(name="Error message",
                         value=readable_error, inline=True)
     else:

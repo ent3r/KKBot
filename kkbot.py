@@ -44,8 +44,7 @@ async def handle_error(ctx, error, readable_error=None):
         embed.add_field(name="Error message", value=error, inline=True)
     await ctx.send(embed=embed)
     print(f"Readable error: {readable_error}")
-    raise error
-
+    print(f"Actual error: {error}")
 
 class Bot(commands.Bot):
     """The framework for our bot"""
@@ -69,7 +68,7 @@ class Bot(commands.Bot):
         """Handles errors by sending a message in the channel"""
         if isinstance(error, commands.CommandNotFound):
             await handle_error(ctx, error, "Command not found")
-            raise error
+            return
         raise error
 
 
@@ -136,7 +135,6 @@ class Math(commands.Cog):
             handle_error(ctx, err, "Cannot convert char to int")
             return
         await ctx.send(sum(numbers_int))
-        print("Add command succeed")
 
     @commands.command()
     async def sqrt(self, ctx, number):

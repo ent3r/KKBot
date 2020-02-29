@@ -43,6 +43,7 @@ async def handle_error(ctx, error, readable_error=None):
     else:
         embed.add_field(name="Error message", value=error, inline=True)
     await ctx.send(embed=embed)
+    print(f"Readable error: {readable_error}")
     raise error
 
 

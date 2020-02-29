@@ -57,8 +57,9 @@ class Bot(commands.Bot):
         """Ready function"""
         print('------')
         print('Logged in as')
-        print(self.user.name)
-        print(self.user.id)
+        print(f"Name:         {self.user.name}")
+        print(f"ID:           {self.user.id}")
+        print(f"Display name: {self.user.display_name}")
         print('------')
         activity = discord.activity.Activity(
             name="for commands", type=discord.ActivityType.watching)

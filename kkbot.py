@@ -67,7 +67,7 @@ class Bot(commands.Bot):
     async def on_command_error(self, ctx, error):  # pylint: disable=arguments-differ
         """Handles errors by sending a message in the channel"""
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send("Error: Command not found")
+            await handle_error(ctx, error, "Command not found")
             raise error
         raise error
 
@@ -144,6 +144,10 @@ class Math(commands.Cog):
             number = int(number)
         except Exception as err:
             handle_error(ctx, err, "Cannot convert char to int")
+        if number < 0:
+            await handle_error(ctx, ValueError("No sqrt for negative numbers"),
+                         "Cannot calculate sqrt from negative numbers")
+            return
         square = mathfunc.sqrt(number)
         await ctx.send(f"The square root of {number} is {square}\n┏┓\n┗┛")
 
@@ -163,8 +167,8 @@ class Fun(commands.Cog):
         """Rolls a dice in NdN format."""
         try:
             rolls, limit = map(int, dice.split('d'))
-        except ValueError:
-            await ctx.send('Format has to be in NdN!')
+        except ValueError as err:
+            await handle_error(ctx, err, "Format has to be in NdN!")
             return
 
         result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
@@ -186,17 +190,14 @@ class Fun(commands.Cog):
         if ctx.invoked_subcommand is None:
             if random.randint(0, 1) == 0:
                 await ctx.send('No, {0.subcommand_passed} is not cool'.format(ctx))
-                return
             else:
                 await ctx.send('Yes, {0.subcommand_passed} is cool :)'.format(ctx))
-                return
 
 
 BOT = Bot()
 BOT.add_cog(Utilities(BOT))
 BOT.add_cog(Math(BOT))
 BOT.add_cog(Fun(BOT))
-
 
 
 TOKEN = os.getenv("KKBOTTOKEN")
@@ -206,7 +207,7 @@ if TOKEN is None:
 try:
     print("Starting...")
     BOT.run(TOKEN)
-    print("Closed")
+    print("Closing...", end="")
 except KeyboardInterrupt:
     print("Forceibly closing connection...", end="")
     BOT.close()

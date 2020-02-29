@@ -26,7 +26,7 @@ RESPONSE = json.loads(requests.request(
 
 
 DESCRIPTION = "The bot in use in the KodeKafe discord server"
-PREFIX = ">"
+PREFIX = commands.when_mentioned_or(">")
 
 
 async def handle_error(ctx, error, readable_error=None):

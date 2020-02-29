@@ -26,7 +26,7 @@ RESPONSE = json.loads(requests.request(
 
 
 DESCRIPTION = "The bot in use in the KodeKafe discord server"
-PREFIX = ">"
+PREFIX = commands.when_mentioned_or(">")
 
 
 async def handle_error(ctx, error, readable_error=None):
@@ -147,7 +147,7 @@ class Math(commands.Cog):
             handle_error(ctx, err, "Cannot convert char to int")
         if number < 0:
             await handle_error(ctx, ValueError("No sqrt for negative numbers"),
-                         "Cannot calculate sqrt from negative numbers")
+                               "Cannot calculate sqrt from negative numbers")
             return
         square = mathfunc.sqrt(number)
         await ctx.send(f"The square root of {number} is {square}\n┏┓\n┗┛")
